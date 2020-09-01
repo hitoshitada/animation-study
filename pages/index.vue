@@ -52,7 +52,7 @@ export default {
     styles:function(){
       return{
       '--top': '200px',
-      '--left': '300px' }
+      '--left': '200px' }
       },
 
 
