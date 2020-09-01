@@ -1,0 +1,24 @@
+{
+  "name": "vue-picture",
+  "version": "1.0.0",
+  "description": "My rad Nuxt.js project",
+  "author": "Hitoshi Tada",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.3.6",
+    "install": "^0.13.0",
+    "node-sass": "^4.14.1",
+    "npm": "^6.14.8",
+    "nuxt": "^2.0.0",
+    "sass-loader": "^10.0.1"
+  },
+  "devDependencies": {
+    "nuxt-svg-loader": "^1.2.0"
+  }
+}

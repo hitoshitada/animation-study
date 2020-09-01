@@ -1,0 +1,12 @@
+p.sample {
+ 
+  background-image: url("assets/fukei01.jpg")
+  }
+
+  header {
+
+    height: 500px; /* 空の要素なので、高さの定義が必要です。 */
+    
+    background-image: url("assets/fukei05.jpg");
+    
+    }
