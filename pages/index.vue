@@ -3,12 +3,12 @@
    
   
     <button type="button" @click="shuffle">Shuffle</button>
-    
+    <button type="button" @click="move">Move</button>
   <transition-group tag="div" name="list">
    
    <!-- <p v-for="(item,index) in list" :key="item.cla">{{item.cla}}</p> :class="item.cla"-->
    
-    <component v-for="(item,index) in list" :is="item.comp" class="svga" :style="styles" :key="item.cla" width=100 height=100>
+    <component v-for="(item,index) in list" :is="item.comp" :class="item.cla" :style="styles" :key="item.cla" width=100 height=100>
     </component> 
       
   </transition-group>
@@ -36,25 +36,54 @@ export default {
     return{
     maxId: 3,
     list: [
-    {comp:SampleSvg1,cla:"svga"},
+    {comp:SampleSvg1,cla:"svg1"},
     {comp:SampleSvg2,cla:"svg2"},
     {comp:SampleSvg3,cla:"svg3"},
     {comp:SampleSvg4,cla:"svg4"},
     {comp:SampleSvg5,cla:"svg5"},
     {comp:SampleSvg6,cla:"svg6"}
     ],
-        
+      styles:{
+       '--top1': '200px',
+       '--top2': '350px',
+       '--top3': '500px',
+       '--top4': '200px',
+       '--top5': '350px',
+       '--top6': '500px',
+       '--left1': '200px',
+      '--left2': '200px',
+       '--left3': '200px',
+       '--left4': '350px',
+       '--left5': '350px',
+       '--left6': '350px'
+      },
+      toplist:[
+         '200px',
+         '350px',
+         '500px',
+         '200px',
+         '350px',
+         '500px'
+      ],
+      leftlist:[
+         '200px',
+         '200px',
+         '200px',
+         '350px',
+         '350px',
+         '350px'
+      ], 
     
 
     }
   },
  computed:{
-    styles:function(){
+  /*  styles:function(){
       return{
-      '--top': '200px',
-      '--left': '200px' }
+      '--top': '300px',
+      '--left': '300px' }
       },
-
+  */
 
  },
 
@@ -67,17 +96,36 @@ export default {
     
     shuffle:function(){
      
-      for(let i = this.list.length - 1; i > 0; i--){
+      for(let i = this.toplist.length-1 ; i > 0; i--){
     let r = Math.floor(Math.random() * (i + 1));
-    let tmp = this.list[i].comp;
-    this.list[i].comp= this.list[r].comp;
-    this.list[r].comp = tmp;
-    let tmp2 = this.list[i].cla;
-    this.list[i].cla= this.list[r].cla;
-    this.list[r].cla = tmp2;
-
-}
+    let tmptop = this.toplist[i];
+    let tmpleft = this.leftlist[i];
+    this.toplist[i]= this.toplist[r];
+    this.leftlist[i]= this.leftlist[r];
+    this.toplist[r] = tmptop;
+    this.leftlist[r] = tmpleft;
+    }
+    let s=0;
+    for(let key in this.styles){
+    if (s<6){
+    this.styles[key]=this.toplist[s]
+    } else {
+    this.styles[key]=this.leftlist[s-6]
+    }
+    s++;
+    }
     },
+    
+
+  move:function(){
+      this.styles={'--top1': '400px','--top2': '600px','--top3': '0px',
+      '--left2': '400px' }
+      console.log(this.styles['--top1']);
+    },
+
+
+
+
     },
   }
 
@@ -96,49 +144,46 @@ body {
 }
 
 
-.svg1{
-   position: absolute;
-  top:  100px;
-  left: 200px;
-}
 
-.svg2{
+
+.svg1{
+   
+   
    position: absolute;
-  top:  250px;
-  left: 200px;
+   top: var(--top1);
+   left: var(--left1);
+}
+.svg2{
+   
+   position: absolute;
+   top: var(--top2);
+   left: var(--left2);
 }
 .svg3{
+   
    position: absolute;
-  top:  400px;
-  left: 200px;
+   top: var(--top3);
+   left: var(--left3);
 }
 .svg4{
+   
    position: absolute;
-  top:  100px;
-  left: 350px;
+   top: var(--top4);
+   left: var(--left4);
 }
 .svg5{
+   
    position: absolute;
-  top:  250px;
-  left: 350px;
+   top: var(--top5);
+   left: var(--left5);
 }
 .svg6{
+   
    position: absolute;
-  top:  400px;
-  left: 350px;
+   top: var(--top6);
+   left: var(--left6);
 }
 
-
-
-
-.svga{
-   --top: 200px;
-   --left: 400px;
-   position: absolute;
-   top: var(--top);
-   left: var(--left);
-  
-}
 
 button {
   padding: 8px 30px;
